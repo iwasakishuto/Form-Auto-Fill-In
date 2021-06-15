@@ -1,8 +1,8 @@
-name: Execute Translation-Gummy
+name: Answer UTokyo Health Management Report Form
 
 on:
   push:
-    branches: [ main ]
+    branches: [ check-github-actions ]
   schedule:
     # Run daily at 5 am (JST)
     - cron: '0 20 * * *'

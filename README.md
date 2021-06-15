@@ -1,24 +1,32 @@
 # Form Auto Fill In
 
-Answer Form Automatically. Currently, the following forms are supported:
+![header](images/header.png?raw=true)
+[![GitHub version](https://badge.fury.io/gh/iwasakishuto%2FForm-Auto-Fill-In.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In)
+[![Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/workflows/Answer%20UTokyo%20Health%20Management%20Report%20Form/badge.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)
 
-- UTokyo Health Management Report Form: https://forms.office.com/Pages/ResponsePage.aspx?id=T6978HAr10eaAgh1yvlMhF__kSldrNpNvIWhwdsjjRJURUZEVjlIWjM1VjhXMlVaRVJaWVpEVjJZVCQlQCN0PWcu
+Answer Form Automatically. 
+
+## Supported Forms
+
+Currently, the following forms are supported:
+
+- UTokyo Health Management Report Form: https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html
 
 ## How to use?
 
 The program can be executed by the following two methods, but the former is recommended.
 
-### 1. Automate execution with Github Actions
+### 1. Automatic Execution with Github Actions
 
 1. Fork this repository
-2. \[Settings\] -> \[Secrets\] -> \[New repository secret\] to fill in the required information below.
-		- `UHMRF_PLACE`
-		- `UTOKYO_ACCOUNT_MAIL_ADDRESS`
-		- `UTOKYO_ACCOUNT_PASSWORD`
+2. **\[Settings\]** -> **\[Secrets\]** -> **\[New repository secret\]** to fill in the required information below.
+	- `UHMRF_PLACE`
+	- `UTOKYO_ACCOUNT_MAIL_ADDRESS`
+	- `UTOKYO_ACCOUNT_PASSWORD`
 
 Now, Github Actions will run daily at 5 am (JST)
 
-### 2. Install in your local env
+### 2. Install in your Local Env
 
 You can also install it in your own environment and run it as appropriate.
 
