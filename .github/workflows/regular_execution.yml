@@ -1,0 +1,66 @@
+name: Execute Translation-Gummy
+
+on:
+  push:
+    branches: 
+      - main
+  schedule:
+    # Run daily at 5 am (JST)
+    - cron: '0 20 * * *'
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        python-version: [3.8]
+        chrome-version: ['87.0.4280.88']
+        platform: [ubuntu-16.04]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@master
+
+    - name: Download Chrome driver ${{ matrix.chrome-version }}
+      run: |
+        sh ${GITHUB_WORKSPACE}/.github/workflows-bin/setup-chromedriver.sh ${{ matrix.platform }} ${{ matrix.chrome-version }}
+
+    - name: Set up Chrome driver
+      run: |
+        export DISPLAY=:99
+        chromedriver --url-base=/wd/hub &
+        sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+
+    - name: Install dependencies (for mac)
+      if: startsWith(matrix.platform, 'macos')
+      run: |
+        brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup
+        brew install homebrew/cask/wkhtmltopdf
+        # brew install gcc
+    - name: Install dependencies (for linux)
+      if: startsWith(matrix.platform, 'ubuntu')
+      run: |
+        # sudo apt-get clean && sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade
+        # sudo apt-get update --allow-releaseinfo-change
+        sudo apt-get install xvfb libfontconfig wkhtmltopdf
+        sudo apt-get install -y cmake gcc g++
+  
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+      run: |
+        pip install -U pip
+        pip install poetry
+        poetry install
+      env:
+        POETRY_VIRTUALENVS_CREATE: false
+        
+    - name: Answering Forms
+      env:
+        UHMRF_PLACE: ${{ secrets.UHMRF_PLACE }}
+        UTOKYO_ACCOUNT_MAIL_ADDRESS: ${{ secrets.UTOKYO_ACCOUNT_MAIL_ADDRESS }}
+        UTOKYO_ACCOUNT_PASSWORD: ${{ secrets.UTOKYO_ACCOUNT_PASSWORD }}
+      run: |
+        poetry run answer-UHMRF
