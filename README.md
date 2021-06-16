@@ -23,6 +23,7 @@ The program can be executed by the following two methods, but the former is reco
 	- `UHMRF_PLACE`
 	- `UTOKYO_ACCOUNT_MAIL_ADDRESS`
 	- `UTOKYO_ACCOUNT_PASSWORD`
+	- ![Settings_Secrets.png](images/Settings_Secrets.png)
 
 Now, Github Actions will run daily at 5 am (JST)
 
