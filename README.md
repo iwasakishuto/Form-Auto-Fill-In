@@ -19,24 +19,29 @@ The program can be executed by the following two methods, but the former is reco
 ### 1. Automatic Execution with Github Actions
 
 1. Fork this repository
-2. Please enable workflow from **\[Actions\]** tab.
+2. <details><summary>Please enable workflow from <b>[Actions]</b> tab.</summary>
 
-|Understand workflows|Enable [Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)|
-|:-:|:-:|
-|![Enable Workflow 1.png](images/enable-workflows1.png)|![Enable Workflow 2.png](images/enable-workflows2.png)|
+    |Understand workflows|Enable [Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)|
+    |:-:|:-:|
+    |![Enable Workflow 1.png](images/enable-workflows1.png)|![Enable Workflow 2.png](images/enable-workflows2.png)|
+  </details>
 
-3. **\[Settings\]** -> **\[Secrets\]** -> **\[New repository secret\]** to fill in the required information below.
+3. <b>[Settings]</b> -> <b>[Secrets]</b> -> <b>[New repository secret]</b> to fill in the required information below.
 
 |Name|Value (example)|description|
 |:-:|:-|:-|
-|`UHMRF_CAMPUS`|Enter `"1","3"` for "Hongo Area Campuses" and "Kashiwa Area Campuses"|1.Hongo Area Campuses<br>2.Komaba Area Campuses<br>3.Kashiwa Area Campuses<br>4.Other Campus|
+|`UHMRF_CAMPUS`|Enter `1,3` for "Hongo Area Campuses" and "Kashiwa Area Campuses"|1.Hongo Area Campuses<br>2.Komaba Area Campuses<br>3.Kashiwa Area Campuses<br>4.Other Campus|
 |`UHMRF_PLACE`|ex. 理学部3号館|**Main place(s) you will be staying at or visiting on campus todayImmersive Reader**. Please enter the name(s) and floor(s) of the building(s) you will be staying at or visiting as listed on the campus map on the UTokyo website ( https://www.u-tokyo.ac.jp/en/about/access.html ).|
 |`UTOKYO_ACCOUNT_MAIL_ADDRESS`|`XXX@utac.u-tokyo.ac.jp`|Email Address required to access [UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html)|
 |`UTOKYO_ACCOUNT_PASSWORD`|PASSWORD|Password required to access [UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html)|
 
-![Settings_Secrets.png](images/Settings_Secrets.png)
+<details>
+	<summary>Results</summary>
 
-Now, Github Actions will run daily at 5 am (JST)
+![Settings_Secrets.png](images/Settings_Secrets.png)
+</details>
+
+**Now, Github Actions will run daily at 5 am (JST) :)**
 
 ### 2. Install in your Local Env
 
