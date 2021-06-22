@@ -58,6 +58,7 @@ jobs:
         
     - name: Answering Forms
       env:
+        UHMRF_CAMPUS: ${{ secrets.UHMRF_CAMPUS }}
         UHMRF_PLACE: ${{ secrets.UHMRF_PLACE }}
         UTOKYO_ACCOUNT_MAIL_ADDRESS: ${{ secrets.UTOKYO_ACCOUNT_MAIL_ADDRESS }}
         UTOKYO_ACCOUNT_PASSWORD: ${{ secrets.UTOKYO_ACCOUNT_PASSWORD }}
