@@ -31,8 +31,8 @@ The program can be executed by the following two methods, but the former is reco
 |Name|Value (example)|description|
 |:-:|:-|:-|
 |`UHMRF_PLACE`|ex. 理学部3号館|**Main place(s) you will be staying at or visiting on campus todayImmersive Reader**. Please enter the name(s) and floor(s) of the building(s) you will be staying at or visiting as listed on the campus map on the UTokyo website ( https://www.u-tokyo.ac.jp/en/about/access.html ).|
-|`UTOKYO_ACCOUNT_MAIL_ADDRESS`|`XXX@utac.u-tokyo.ac.jp`|Email Address required to access [UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html)|
-|`UTOKYO_ACCOUNT_PASSWORD`|PASSWORD|Password required to access [UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html)|
+|`UTOKYO_ACCOUNT_MAIL_ADDRESS`|`XXX@utac.u-tokyo.ac.jp`|Email Address required to access [UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html). `xxx` is a 10 digit number.|
+|`UTOKYO_ACCOUNT_PASSWORD`|PASSWORD|Password required to access [UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html).|
 
 <details>
 	<summary>Results</summary>

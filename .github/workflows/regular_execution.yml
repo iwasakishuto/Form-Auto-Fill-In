@@ -4,8 +4,8 @@ on:
   push:
     branches: [ check-github-actions ]
   schedule:
-    # Run daily at 5 am (JST)
-    - cron: '0 20 * * *'
+    - cron: '0 20 * * *' # Run daily at 5 am (JST)
+  workflow_dispatch:
 
 jobs:
   build:
