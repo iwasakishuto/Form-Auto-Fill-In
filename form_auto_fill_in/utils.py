@@ -92,8 +92,8 @@ def try_find_element(
         verbose (bool)     : Whether you want to print output or not. (default= ``True`` )
 
     Examples:
-        >>> from form_auto_fill_in.utils import get_driver, try_find_element
-        >>> with get_driver() as driver:
+        >>> from form_auto_fill_in.utils import get_chrome_driver, try_find_element
+        >>> with get_chrome_driver() as driver:
         ...     driver.get("https://www.google.com/")
         ...     e = try_find_element(driver=driver, by="tag name", identifier="img")
         Succeeded to locate element with tag name=img
