@@ -56,7 +56,7 @@ class UtokyoHealthManagementReportForm:
         if question_type == "radio":
             target.click()
         elif question_type == "checkbox":
-            for n in set(val + [no]):
+            for n in set(val):
                 inputElements[int(n) - 1].click()
         elif question_type == "text":
             if not isinstance(val, str):
