@@ -16,7 +16,7 @@ jobs:
         python-version: [3.8]
         poetry-version: [1.1.6]
         chrome-version: ['91.0.4472.101']
-        platform: [ubuntu-16.04]
+        platform: [ubuntu-latest]
 
     steps:
     - name: Checkout Repository
