@@ -34,7 +34,6 @@ def UHMRF(argv: list = sys.argv[1:]):
     path = os.path.join(DATA_DIR, "UHMRF.json")
     tmp_path = os.path.join(DATA_DIR, "UHMRF_tmp.json")
     old2new: Dict[str, str] = {
-        "UHMRF_CAMPUS": os.getenv("UHMRF_CAMPUS", "1"),  # 1.Hongo Area Campuses
         "UHMRF_PLACE": os.getenv("UHMRF_PLACE", ""),
         "UTOKYO_ACCOUNT_MAIL_ADDRESS": os.getenv("UTOKYO_ACCOUNT_MAIL_ADDRESS", ""),
         "UTOKYO_ACCOUNT_PASSWORD": os.getenv("UTOKYO_ACCOUNT_PASSWORD", ""),
