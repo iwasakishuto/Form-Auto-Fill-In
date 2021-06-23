@@ -44,6 +44,9 @@ aside form.navbar-search input#tipue_search_input {
   width: 85%;
 }
 
+aside.toc{
+  display: none;
+}
 @media screen and (min-width: 1480px) {
   main {
     padding-right: 20vw;
@@ -81,7 +84,7 @@ aside form.navbar-search input#tipue_search_input {
   }
 }
 
-.github-corner svg{
+.github-corner svg {
   position: fixed!important;
   z-index: 100;
 }

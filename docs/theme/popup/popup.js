@@ -27,6 +27,6 @@ function addPopUpViewer(element){
   }
 }
 
-window.onload = function(){
+document.addEventListener('DOMContentLoaded', function(){
   addPopUpViewer(element="article img");
-}
+}, false);
