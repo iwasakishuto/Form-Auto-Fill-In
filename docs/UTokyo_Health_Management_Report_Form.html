@@ -174,12 +174,108 @@
 <li>Saving repositories with stars</li>
 </ol>
 <h3 id="1-join-github">1. 🚀 Join GitHub</h3>
-<p>Please visit https://github.com/join to join GitHub :)</p>
+<p>Please visit <a href="https://github.com/join">https://github.com/join</a> to join GitHub :)</p>
 <h3 id="2-fork-form-auto-fill-in-repository">2. 🍴 Fork <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In">"Form-Auto-Fill-In"</a> Repository</h3>
+<p>A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. Press the button on the top right to fork my repository.</p>
+<p><img alt="Fork Button" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/fork.png"/> </p>
 <h3 id="3-enable-github-actions">3. ✅ Enable GitHub Actions</h3>
+<p>Please enable workflow from <b>[Actions]</b> tab.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Make sure all workflows are <strong>disabled</strong></th>
+<th align="center">Enable <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml">UHMRF's workflow</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="Enable Workflow.png" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/enable-workflows.png"/></td>
+<td align="center"><img alt="Enable UHMRF's Workflow.png" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/enable-workflows.png"/></td>
+</tr>
+</tbody>
+</table>
 <h3 id="4-register-necessary-information-in-github-secrets">4. ✏️ Register necessary information in GitHub Secrets</h3>
+<p><b>[Settings]</b> -&gt; <b>[Secrets]</b> -&gt; <b>[New repository secret]</b> to fill in the required information below.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="left">Value (ex.)</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>UHMRF_PLACE</code></td>
+<td align="left">ex. 理学部3号館</td>
+<td align="left"><strong>Main place(s) you will be staying at or visiting on campus todayImmersive Reader</strong>. Please enter the name(s) and floor(s) of the building(s) you will be staying at or visiting as listed on the campus map on the UTokyo website ( https://www.u-tokyo.ac.jp/en/about/access.html ).</td>
+</tr>
+<tr>
+<td align="center"><code>UTOKYO_ACCOUNT_MAIL_ADDRESS</code></td>
+<td align="left"><code>10 digit number@utac.u-tokyo.ac.jp</code></td>
+<td align="left">Email Address required to access <a href="https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html">UTokyo Health Management Report Form</a>.</td>
+</tr>
+<tr>
+<td align="center"><code>UTOKYO_ACCOUNT_PASSWORD</code></td>
+<td align="left">PASSWORD</td>
+<td align="left">Password required to access <a href="https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html">UTokyo Health Management Report Form</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>※ Please fill in all the values as shown in the image below</strong></p>
+<p><img alt="settings_secrets.png" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/settings_secrets.png"/></p>
+<p>With this setting, each question on the form will be answered as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="center">No</th>
+<th align="left">title</th>
+<th align="left">answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="left">メール送信先</td>
+<td align="left">ECCSクラウドメール(共通ID@g.ecc.u-tokyo.ac.jp)宛に送信</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">Campus entry</td>
+<td align="left">Select all of "Hongo Area Campuses" / "Komaba Area Campuses" / "Kashiwa Area Campuses"</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">Main place(s) you will be staying at or visiting on campus today</td>
+<td align="left">The value of <code>UHMRF_PLACE</code></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">Body temperature (morning)</td>
+<td align="left">Less than 37.0 degrees Celsius <strong>（※ ⚠️ It is important to understand your own physical condition by measuring body temperature!!）</strong></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">Presence or absence of symptoms</td>
+<td align="left">No</td>
+</tr>
+</tbody>
+</table>
 <h3 id="5-tests">5. 🚨 Tests</h3>
+<p>Check the <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml">github actions</a> manually.</p>
+<p><img alt="workflow_dispatch.png" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/workflow_dispatch.png"/></p>
 <h3 id="6-saving-repositories-with-stars">6. ❤️ Saving repositories with stars</h3>
+<p><img alt="Star" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/star.gif"/> </p>
+<p>The following projects (repositories) are open to the public:</p>
+<ul>
+<li>This repository: <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In">Github</a>, <a href="https://iwasakishuto.github.io/Form-Auto-Fill-In/index.html">英語使用書</a></li>
+<li>A magical gadget which enables user to be able to speak and understand other languages: <a href="https://github.com/iwasakishuto/Translation-Gummy">Github</a>, <a href="https://iwasakishuto.github.io/Translation-Gummy/index.html">documentation</a></li>
+<li>Front-End portfolio (game, tools): <a href="https://github.com/iwasakishuto/Front-End">Github</a>, <a href="https://iwasakishuto.github.io/Front-End/index.html">web site</a></li>
+<li>Python library which contains <strong>machine learning</strong>, <strong>deep learning</strong>, and <strong>bioinformatic algorithms</strong>: <a href="https://github.com/iwasakishuto/Kerasy">Kerasy</a>, <a href="https://iwasakishuto.github.io/Kerasy/index.html">documentation</a></li>
+<li>A package of useful python functions: <a href="https://github.com/iwasakishuto/Python-Charmers">GitHub</a>, <a href="https://iwasakishuto.github.io/Python-Charmers/">documentation</a></li>
+<li>etc.</li>
+</ul>
+<p>It would be very encouraging if you could star⭐️ some repositories 🥺🥺🥺</p>
   </div>
   <div class="tag-cloud">
     <p>
@@ -191,13 +287,8 @@
 
 
 
-  
-    <aside class="toc">
-      <div class="col-lg-3 hidden-xs hidden-sm">
-        <div id="toc"><ul><li><a class="toc-href" href="#" title="UTokyo Health Management Report Form">UTokyo Health Management Report Form</a><ul><li><a class="toc-href" href="#how-to-use" title="How to use?">How to use?</a><ul><li><a class="toc-href" href="#1-join-github" title="1. 🚀 Join GitHub">1. 🚀 Join GitHub</a></li><li><a class="toc-href" href="#2-fork-form-auto-fill-in-repository" title='2. 🍴 Fork "Form-Auto-Fill-In" Repository'>2. 🍴 Fork "Form-Auto-Fill-In" Repository</a></li><li><a class="toc-href" href="#3-enable-github-actions" title="3. ✅ Enable GitHub Actions">3. ✅ Enable GitHub Actions</a></li><li><a class="toc-href" href="#4-register-necessary-information-in-github-secrets" title="4. ✏️ Register necessary information in GitHub Secrets">4. ✏️ Register necessary information in GitHub Secrets</a></li><li><a class="toc-href" href="#5-tests" title="5. 🚨 Tests">5. 🚨 Tests</a></li><li><a class="toc-href" href="#6-saving-repositories-with-stars" title="6. ❤️ Saving repositories with stars">6. ❤️ Saving repositories with stars</a></li></ul></li></ul></li></ul></div>
-      </div>
-    </aside>
 </article>
+
 
     <footer>
 <p>&copy; 2021 iwasakishuto</p>
@@ -205,6 +296,15 @@
 Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
 </p>    </footer>
   </main>
+
+
+  <aside class="toc">
+    <div class="col-lg-3 hidden-xs hidden-sm">
+      <h4>Table of Contents</h4>
+      <div id="toc"><ul><li><a class="toc-href" href="#" title="UTokyo Health Management Report Form">UTokyo Health Management Report Form</a><ul><li><a class="toc-href" href="#how-to-use" title="How to use?">How to use?</a><ul><li><a class="toc-href" href="#1-join-github" title="1. 🚀 Join GitHub">1. 🚀 Join GitHub</a></li><li><a class="toc-href" href="#2-fork-form-auto-fill-in-repository" title='2. 🍴 Fork "Form-Auto-Fill-In" Repository'>2. 🍴 Fork "Form-Auto-Fill-In" Repository</a></li><li><a class="toc-href" href="#3-enable-github-actions" title="3. ✅ Enable GitHub Actions">3. ✅ Enable GitHub Actions</a></li><li><a class="toc-href" href="#4-register-necessary-information-in-github-secrets" title="4. ✏️ Register necessary information in GitHub Secrets">4. ✏️ Register necessary information in GitHub Secrets</a></li><li><a class="toc-href" href="#5-tests" title="5. 🚨 Tests">5. 🚨 Tests</a></li><li><a class="toc-href" href="#6-saving-repositories-with-stars" title="6. ❤️ Saving repositories with stars">6. ❤️ Saving repositories with stars</a></li></ul></li></ul></li></ul></div>
+    </div>
+  </aside>
+
 
 
 

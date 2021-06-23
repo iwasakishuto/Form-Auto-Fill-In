@@ -45,8 +45,11 @@ aside form.navbar-search input#tipue_search_input {
 }
 
 @media screen and (min-width: 1480px) {
+  main {
+    padding-right: 20vw;
+  }
   aside.toc{
-    left: 20vw;
+    left: 80vw;
     width: 20vw;
     background-color: #eee;
     font-size: .8em;
@@ -54,8 +57,26 @@ aside form.navbar-search input#tipue_search_input {
   }
   aside.toc ul{
     padding: 0;
+    padding-inline-start: 10px;
   }
   aside.toc *{
     color: black!important;
+  }
+  aside.toc div.col-lg-3.hidden-xs.hidden-sm {
+    padding: 9px;
+    margin: 18px 9px;
+    border-radius: 10px;
+    background-color: white;
+  }
+  aside.toc h4 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+  aside.toc a:hover {
+    color: #d9411e!important;
+    text-decoration: underline;
+  }
+  aside.toc div#toc {
+    padding-top: 0;
   }
 }
