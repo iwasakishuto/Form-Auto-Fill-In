@@ -1,8 +1,8 @@
 # Form Auto Fill In
 
-![header](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/header.png)
+![header](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/site/header.png)
 [![GitHub version](https://badge.fury.io/gh/iwasakishuto%2FForm-Auto-Fill-In.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In)
-[![Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/workflows/Answer%20UTokyo%20Health%20Management%20Report%20Form/badge.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)
+[![Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/workflows/Answer%20UTokyo%20Health%20Management%20Report%20Form/badge.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml)
 
 Answer Form Automatically. 
 
@@ -21,9 +21,9 @@ The program can be executed by the following two methods, but the former is reco
 1. Fork this repository
 2. <details><summary>Please enable workflow from <b>[Actions]</b> tab.</summary>
 
-    |Understand workflows|Enable [Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)|
+    |Understand workflows|Enable [Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml)|
     |:-:|:-:|
-    |![Enable Workflow 1.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/enable-workflows.png)|![Enable UHMRF's Workflow.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/enable-workflows.png)|
+    |![Enable Workflow.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/enable-workflows.png)|![Enable UHMRF's Workflow.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/enable-workflows.png)|
   </details>
 
 3. <b>[Settings]</b> -> <b>[Secrets]</b> -> <b>[New repository secret]</b> to fill in the required information below.
@@ -40,7 +40,7 @@ The program can be executed by the following two methods, but the former is reco
     ![settings_secrets.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/settings_secrets.png)
     </details>
 
-4. Check the [github actions](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml) manually.
+4. Check the [github actions](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml) manually.
 
     ![workflow_dispatch.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/workflow_dispatch.png)
     
