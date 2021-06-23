@@ -5,6 +5,9 @@ ul.list {
   font-size: 1.6em;
   text-align: center;
 }
+ul.social {
+  padding: 0!important;
+}
 ul.list li {
   display: inline;
 }
@@ -33,6 +36,10 @@ ul.list a.sc-twitter {
   background-color: #4da7de;
 }
 
-aside nav h4 {
+aside h4 {
   text-decoration: underline;
+}
+
+aside form.navbar-search input#tipue_search_input {
+  width: 85%;
 }

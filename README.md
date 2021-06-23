@@ -23,7 +23,7 @@ The program can be executed by the following two methods, but the former is reco
 
     |Understand workflows|Enable [Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)|
     |:-:|:-:|
-    |![Enable Workflow 1.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/enable-workflows.png)|![Enable UHMRF's Workflow.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/enable-workflows.png)|
+    |![Enable Workflow 1.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/enable-workflows.png)|![Enable UHMRF's Workflow.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/enable-workflows.png)|
   </details>
 
 3. <b>[Settings]</b> -> <b>[Secrets]</b> -> <b>[New repository secret]</b> to fill in the required information below.
