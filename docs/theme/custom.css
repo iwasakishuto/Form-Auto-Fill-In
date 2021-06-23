@@ -43,3 +43,19 @@ aside h4 {
 aside form.navbar-search input#tipue_search_input {
   width: 85%;
 }
+
+@media screen and (min-width: 1480px) {
+  aside.toc{
+    left: 20vw;
+    width: 20vw;
+    background-color: #eee;
+    font-size: .8em;
+    text-align: left;
+  }
+  aside.toc ul{
+    padding: 0;
+  }
+  aside.toc *{
+    color: black!important;
+  }
+}
