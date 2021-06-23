@@ -52,6 +52,7 @@ aside.toc{
     padding-right: 20vw;
   }
   aside.toc{
+    display: block;
     left: 80vw;
     width: 20vw;
     background-color: #eee;
