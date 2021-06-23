@@ -345,6 +345,11 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   <script src="https://iwasakishuto.github.io/Form-Auto-Fill-In/theme/popup/popup.js"></script>
   <script>
     $(function () {
+      $("article table").wrap('<div class="table-wrapper"></div>');
+    });
+  </script>
+  <script>
+    $(function () {
       var scroll = new SmoothScroll('a[href*="#"]', {
         speed: 500,
         speedAsDuration: true

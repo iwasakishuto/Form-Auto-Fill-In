@@ -89,3 +89,11 @@ aside.toc{
   position: fixed!important;
   z-index: 100;
 }
+
+div.table-wrapper{
+  width: 100%;
+  overflow-x: scroll;
+}
+div.table-wrapper table{
+  border: 2px solid;
+}
