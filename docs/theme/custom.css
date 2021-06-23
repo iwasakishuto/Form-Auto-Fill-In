@@ -82,6 +82,6 @@ aside form.navbar-search input#tipue_search_input {
 }
 
 .github-corner svg{
-  position: fixed;
+  position: fixed!important;
   z-index: 100;
 }
