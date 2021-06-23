@@ -1,6 +1,6 @@
 # Form Auto Fill In
 
-![header](images/header.png?raw=true)
+![header](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/header.png)
 [![GitHub version](https://badge.fury.io/gh/iwasakishuto%2FForm-Auto-Fill-In.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In)
 [![Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/workflows/Answer%20UTokyo%20Health%20Management%20Report%20Form/badge.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)
 
@@ -23,7 +23,7 @@ The program can be executed by the following two methods, but the former is reco
 
     |Understand workflows|Enable [Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml)|
     |:-:|:-:|
-    |![Enable Workflow 1.png](images/enable-workflows1.png)|![Enable Workflow 2.png](images/enable-workflows2.png)|
+    |![Enable Workflow 1.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/enable-workflows.png)|![Enable UHMRF's Workflow.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/enable-workflows.png)|
   </details>
 
 3. <b>[Settings]</b> -> <b>[Secrets]</b> -> <b>[New repository secret]</b> to fill in the required information below.
@@ -37,12 +37,12 @@ The program can be executed by the following two methods, but the former is reco
     <details>
 	<summary>Results</summary>
 
-    ![Settings_Secrets.png](images/Settings_Secrets.png)
+    ![settings_secrets.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/settings_secrets.png)
     </details>
 
 4. Check the [github actions](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/regular_execution.yml) manually.
 
-    ![workflow_dispatch.png](images/workflow_dispatch.png)
+    ![workflow_dispatch.png](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/workflow_dispatch.png)
     
 **Now, Github Actions will run daily at 5 am (JST) :)**
 
