@@ -47,7 +47,7 @@ aside form.navbar-search input#tipue_search_input {
 aside.toc{
   display: none;
 }
-@media screen and (min-width: 1480px) {
+@media screen and (min-width: 1400px) {
   main {
     padding-right: 20vw;
   }
