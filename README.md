@@ -1,8 +1,13 @@
 # Form Auto Fill In
 
-![header](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/site/header.png)
-[![GitHub version](https://badge.fury.io/gh/iwasakishuto%2FForm-Auto-Fill-In.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In)
-[![Answer UTokyo Health Management Report Form](https://github.com/iwasakishuto/Form-Auto-Fill-In/workflows/Answer%20UTokyo%20Health%20Management%20Report%20Form/badge.svg)](https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml)
+<a href="https://github.com/iwasakishuto/Form-Auto-Fill-In"><img src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/site/header.png" alt="header"></a>
+<a href="https://github.com/iwasakishuto/Form-Auto-Fill-In"><img src="https://badge.fury.io/gh/iwasakishuto%2FForm-Auto-Fill-In.svg" alt="GitHub Version"></a>
+<a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/main/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" alt="License"></a>
+<br/>
+<a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml"><img src="https://github.com/iwasakishuto/Form-Auto-Fill-In/workflows/Answer%20UTokyo%20Health%20Management%20Report%20Form/badge.svg" alt="Answer UTokyo Health Management Report Form"></a>
+<a href="https://youtu.be/A_1zfeCDN24"><img src="https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white" alt="YouTube"></a>
+<a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/wiki/100.-%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%A0%B1%E5%91%8A%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0"><img src="https://img.shields.io/badge/Documentation-Japanese-ff0000?style=flat-square" alt="Japanese Documentation"></a>
+<a href="https://iwasakishuto.github.io/Form-Auto-Fill-In/UTokyo_Health_Management_Report_Form.html"><img src="https://img.shields.io/badge/Documentation-English-0000ff?style=flat-square" alt="English Documentation"></a>
 
 Answer Form Automatically. 
 
