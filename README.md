@@ -18,9 +18,11 @@ Currently, the following forms are supported:
 
 The program can be executed by the following two methods, but the former is recommended.
 
-### 1. Automatic Execution with Github Actions
+### 1. Automatic Execution with Github Actions (recommended)
 
-Look at the [documentation](https://iwasakishuto.github.io/Form-Auto-Fill-In/).
+Look at the [documentation](https://iwasakishuto.github.io/Form-Auto-Fill-In/) or YouTube (for UTokyo Health Management Report Form) below:
+
+[![UHMRF thumbnail](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/thumbnail.png)](https://youtu.be/A_1zfeCDN24)
 
 ### 2. Install in your Local Env
 

@@ -5,6 +5,8 @@ Icon?
 # Generate Documentation
 mkdocs.sh
 src/
+# Jupyter Nobook
+*.ipynb
 #--- Added by iwasakishuto <https://github.com/iwasakishuto> --->
 
 

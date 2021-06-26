@@ -97,3 +97,12 @@ div.table-wrapper{
 div.table-wrapper table{
   border: 2px solid;
 }
+
+article img {
+  margin: 0 auto;
+  display: block;
+}
+
+.wrap-center {
+  text-align: center;
+}
