@@ -170,20 +170,21 @@
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/A_1zfeCDN24" title="YouTube video player" width="560"></iframe>
 </div>
 <h2 id="how-to-use">How to use?</h2>
-<p>Follow the steps below to set up this automation tool. Even if you don't have any knowledge about programming or IT, you can easily do it with GUI. </p>
+<p>Follow the steps below to set up this automation tool. Even if you don't have any knowledge about programming or IT, you can easily do it with GUI.</p>
 <ol>
 <li>Join GitHub</li>
 <li>Fork <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In">"Form-Auto-Fill-In"</a> Repository</li>
 <li>Enable GitHub Actions</li>
 <li>Register necessary information in GitHub Secrets</li>
 <li>Tests</li>
+<li>Fetch Upstream</li>
 <li>Saving repositories with stars</li>
 </ol>
 <h3 id="1-join-github">1. 🚀 Join GitHub</h3>
 <p>Please visit <a href="https://github.com/join">https://github.com/join</a> to join GitHub :)</p>
 <h3 id="2-fork-form-auto-fill-in-repository">2. 🍴 Fork <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In">"Form-Auto-Fill-In"</a> Repository</h3>
 <p>A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. Press the button on the top right to fork my repository.</p>
-<p><img alt="Fork Button" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/fork.png"/> </p>
+<p><img alt="Fork Button" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/fork.png"/></p>
 <h3 id="3-enable-github-actions">3. ✅ Enable GitHub Actions</h3>
 <p>Please enable workflow from <b>[Actions]</b> tab.</p>
 <table>
@@ -213,7 +214,7 @@
 <tbody>
 <tr>
 <td align="center"><code>UHMRF_PLACE</code></td>
-<td align="left">ex. 理学部3号館</td>
+<td align="left">ex. 理学部 3 号館</td>
 <td align="left"><strong>Main place(s) you will be staying at or visiting on campus todayImmersive Reader</strong>. Please enter the name(s) and floor(s) of the building(s) you will be staying at or visiting as listed on the campus map on the UTokyo website ( https://www.u-tokyo.ac.jp/en/about/access.html ).</td>
 </tr>
 <tr>
@@ -243,7 +244,7 @@
 <tr>
 <td align="center">1</td>
 <td align="left">メール送信先</td>
-<td align="left">ECCSクラウドメール(共通ID@g.ecc.u-tokyo.ac.jp)宛に送信</td>
+<td align="left">ECCS クラウドメール(共通ID@g.ecc.u-tokyo.ac.jp)宛に送信</td>
 </tr>
 <tr>
 <td align="center">2</td>
@@ -270,8 +271,11 @@
 <h3 id="5-tests">5. 🚨 Tests</h3>
 <p>Check the <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/blob/master/.github/workflows/UHMRF.yml">github actions</a> manually.</p>
 <p><img alt="workflow_dispatch.png" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/workflow_dispatch.png"/></p>
-<h3 id="6-saving-repositories-with-stars">6. ❤️ Saving repositories with stars</h3>
-<p><img alt="Star" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/star.gif"/> </p>
+<h3 id="6-fetch-upstream">6. 🆕 Fetch Upstream</h3>
+<p>Errors may occur due to <strong>changes in the form itself</strong> or <strong>compatibility of some library versions.</strong> In that case, please check the update of the <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In">original repository</a> and fetch the latest version. If that doesn't work, please contact the <a href="https://twitter.com/cabernet_rock">author</a>🙇&zwj;♂️</p>
+<p><img alt="Fetch-Upstream" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/fetch-upstream.gif"/></p>
+<h3 id="7-saving-repositories-with-stars">7. ❤️ Saving repositories with stars</h3>
+<p><img alt="Star" src="https://iwasakishuto.github.io/Form-Auto-Fill-In/images/github/star.gif"/></p>
 <p>The following projects (repositories) are open to the public:</p>
 <ul>
 <li>This repository: <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In">Github</a>, <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/wiki/100.-%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%A0%B1%E5%91%8A%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0">日本語ドキュメント</a></li>
@@ -307,7 +311,7 @@ Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a 
   <aside class="toc">
     <div class="col-lg-3 hidden-xs hidden-sm">
       <h4>Table of Contents</h4>
-      <div id="toc"><ul><li><a class="toc-href" href="#" title="UTokyo Health Management Report Form">UTokyo Health Management Report Form</a><ul><li><a class="toc-href" href="#youtube" title="YouTube">YouTube</a></li><li><a class="toc-href" href="#how-to-use" title="How to use?">How to use?</a><ul><li><a class="toc-href" href="#1-join-github" title="1. 🚀 Join GitHub">1. 🚀 Join GitHub</a></li><li><a class="toc-href" href="#2-fork-form-auto-fill-in-repository" title='2. 🍴 Fork "Form-Auto-Fill-In" Repository'>2. 🍴 Fork "Form-Auto-Fill-In" Repository</a></li><li><a class="toc-href" href="#3-enable-github-actions" title="3. ✅ Enable GitHub Actions">3. ✅ Enable GitHub Actions</a></li><li><a class="toc-href" href="#4-register-necessary-information-in-github-secrets" title="4. ✏️ Register necessary information in GitHub Secrets">4. ✏️ Register necessary information in GitHub Secrets</a></li><li><a class="toc-href" href="#5-tests" title="5. 🚨 Tests">5. 🚨 Tests</a></li><li><a class="toc-href" href="#6-saving-repositories-with-stars" title="6. ❤️ Saving repositories with stars">6. ❤️ Saving repositories with stars</a></li></ul></li></ul></li></ul></div>
+      <div id="toc"><ul><li><a class="toc-href" href="#" title="UTokyo Health Management Report Form">UTokyo Health Management Report Form</a><ul><li><a class="toc-href" href="#youtube" title="YouTube">YouTube</a></li><li><a class="toc-href" href="#how-to-use" title="How to use?">How to use?</a><ul><li><a class="toc-href" href="#1-join-github" title="1. 🚀 Join GitHub">1. 🚀 Join GitHub</a></li><li><a class="toc-href" href="#2-fork-form-auto-fill-in-repository" title='2. 🍴 Fork "Form-Auto-Fill-In" Repository'>2. 🍴 Fork "Form-Auto-Fill-In" Repository</a></li><li><a class="toc-href" href="#3-enable-github-actions" title="3. ✅ Enable GitHub Actions">3. ✅ Enable GitHub Actions</a></li><li><a class="toc-href" href="#4-register-necessary-information-in-github-secrets" title="4. ✏️ Register necessary information in GitHub Secrets">4. ✏️ Register necessary information in GitHub Secrets</a></li><li><a class="toc-href" href="#5-tests" title="5. 🚨 Tests">5. 🚨 Tests</a></li><li><a class="toc-href" href="#6-fetch-upstream" title="6. 🆕 Fetch Upstream">6. 🆕 Fetch Upstream</a></li><li><a class="toc-href" href="#7-saving-repositories-with-stars" title="7. ❤️ Saving repositories with stars">7. ❤️ Saving repositories with stars</a></li></ul></li></ul></li></ul></div>
     </div>
   </aside>
 
