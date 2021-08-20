@@ -211,6 +211,7 @@ def try_find_element_click(
             target=target,
         )
 
+
 def try_find_element_func(
     driver: WebDriver,
     funcname: str = "send_keys",
@@ -219,16 +220,18 @@ def try_find_element_func(
     timeout: int = 3,
     secrets_dict: Dict[str, str] = {},
     verbose: bool = True,
-    **kwargs
+    **kwargs,
 ) -> None:
-    {"click": try_find_element_click, "send_keys": try_find_element_send_keys,}[funcname](
+    {"click": try_find_element_click, "send_keys": try_find_element_send_keys,}[
+        funcname
+    ](
         driver=driver,
         by=by,
         identifier=identifier,
         timeout=timeout,
         secrets_dict=secrets_dict,
         verbose=verbose,
-        **kwargs
+        **kwargs,
     )
 
 

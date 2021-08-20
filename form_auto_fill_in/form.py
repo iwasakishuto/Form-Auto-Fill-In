@@ -1,17 +1,13 @@
 # coding: utf-8
 import copy
 import time
-from typing import Any, Dict, List
 from collections import deque
+from typing import Any, Dict, List
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
-from .utils import (
-    get_chrome_driver,
-    load_data,
-    try_find_element_func,
-)
+from .utils import get_chrome_driver, load_data, try_find_element_func
 
 
 class UtokyoHealthManagementReportForm:
@@ -94,7 +90,7 @@ class UtokyoHealthManagementReportForm:
                 funcname=values.pop("func"),
                 secrets_dict=self.secrets_dict,
                 verbose=self.verbose,
-                **values
+                **values,
             )
         self.print("[END LOGIN]")
 
@@ -112,25 +108,30 @@ class UtokyoHealthManagementReportForm:
             )
             self.answer_form(driver=driver, **kwargs)
 
-    def answer_form(self, driver: WebDriver, deque_maxlen:int=3, **kwargs) -> None:
+    def answer_form(self, driver: WebDriver, deque_maxlen: int = 3, **kwargs) -> None:
         """Answer the forms.
 
         Args:
             driver (WebDriver): An instance of Selenium WebDriver.
         """
         self.print("[START ANSWERING FORM]")
-        for i,ith_answer_data in enumerate(self.data.get("answer", [{}])):
+        for i, ith_answer_data in enumerate(self.data.get("answer", [{}])):
             self.print(f"[START {i}th PAGE]")
             answered_question_numbers = []
             num_questions_to_answer = len(ith_answer_data) - 1
-            num_visible_questions = deque([-1]*deque_maxlen, maxlen=deque_maxlen)
+            num_visible_questions = deque([-1] * deque_maxlen, maxlen=deque_maxlen)
             while True:
                 time.sleep(1)
                 visible_questions = driver.find_elements_by_class_name(
                     name="office-form-question"
                 )
                 num_visible_questions.append(visible_questions)
-                if all([num_visible_questions[0]==e for e in list(num_visible_questions)[1:]]):
+                if all(
+                    [
+                        num_visible_questions[0] == e
+                        for e in list(num_visible_questions)[1:]
+                    ]
+                ):
                     break
                 elif len(answered_question_numbers) >= num_questions_to_answer:
                     break
@@ -166,13 +167,13 @@ class UtokyoHealthManagementReportForm:
                         answered_question_numbers.append(question_number)
                         self.print("-" * 30)
             next_data = ith_answer_data.get("next", {})
-            if len(next_data)>0:
+            if len(next_data) > 0:
                 try_find_element_func(
                     driver=driver,
                     funcname=next_data.pop("func"),
                     secrets_dict=self.secrets_dict,
                     verbose=self.verbose,
-                    **next_data
+                    **next_data,
                 )
             self.print(f"[END {i}th PAGE]")
         self.print("[END ANSWERING FORM]")
