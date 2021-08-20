@@ -9,7 +9,7 @@ from .form import UtokyoHealthManagementReportForm
 from .utils import KwargsParamProcessor
 
 here = os.path.abspath(os.path.dirname(__file__))
-REMOVE_KEYS = ["params", "quiet"]
+ARGUMENT_KEYS = ["params", "quiet"]
 
 
 def UHMRF(argv: list = sys.argv[1:]):
@@ -32,23 +32,16 @@ def UHMRF(argv: list = sys.argv[1:]):
     args = parser.parse_args(argv)
 
     path = os.path.join(DATA_DIR, "UHMRF.json")
-    tmp_path = os.path.join(DATA_DIR, "UHMRF_tmp.json")
-    old2new: Dict[str, str] = {
-        "UHMRF_PLACE": os.getenv("UHMRF_PLACE", ""),
-        "UTOKYO_ACCOUNT_MAIL_ADDRESS": os.getenv("UTOKYO_ACCOUNT_MAIL_ADDRESS", ""),
-        "UTOKYO_ACCOUNT_PASSWORD": os.getenv("UTOKYO_ACCOUNT_PASSWORD", ""),
+    secrets_dict: Dict[str, str] = {
+        "<UHMRF_PLACE>": os.getenv("UHMRF_PLACE", ""),
+        "<UTOKYO_ACCOUNT_MAIL_ADDRESS>": os.getenv("UTOKYO_ACCOUNT_MAIL_ADDRESS", ""),
+        "<UTOKYO_ACCOUNT_PASSWORD>": os.getenv("UTOKYO_ACCOUNT_PASSWORD", ""),
     }
-    old2new.update({k: v for k, v in args.__dict__.items() if k not in REMOVE_KEYS})
+    secrets_dict.update(
+        {k: v for k, v in args.__dict__.items() if k not in ARGUMENT_KEYS}
+    )
 
-    # Rewrite protected content
-    with open(path, mode="r") as f:
-        origin = "".join(f.readlines())
-    for old, new in old2new.items():
-        origin = origin.replace(f"<{old}>", new)
-    with open(tmp_path, mode="w") as f:
-        f.write(origin)
-
-    model = UtokyoHealthManagementReportForm(path=tmp_path, verbose=not args.quiet)
+    model = UtokyoHealthManagementReportForm(
+        path=path, secrets_dict=secrets_dict, verbose=not args.quiet
+    )
     model.run()
-
-    os.remove(tmp_path)

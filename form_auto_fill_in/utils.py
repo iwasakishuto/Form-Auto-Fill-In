@@ -80,16 +80,22 @@ def try_wrapper(
 
 
 def try_find_element(
-    driver: WebDriver, by: str, identifier: str, timeout: int = 3, verbose: bool = True
+    driver: WebDriver,
+    by: str,
+    identifier: str,
+    timeout: int = 3,
+    secrets_dict: Dict[str, str] = {},
+    verbose: bool = True,
 ) -> None:
     """Find an element given a By strategy and locator.
 
     Args:
-        driver (WebDriver) : Selenium WebDriver.
-        by (str)           : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
-        identifier (str)   : Identifier to find the element
-        timeout (int)      : Number of seconds before timing out (default= ``3``)
-        verbose (bool)     : Whether you want to print output or not. (default= ``True`` )
+        driver (WebDriver)            : Selenium WebDriver.
+        by (str)                      : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
+        identifier (str)              : Identifier to find the element
+        timeout (int)                 : Number of seconds before timing out. Defaults to ``3``.
+        secrets_dict (Dict[str, str]) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
+        verbose (bool)                : Whether you want to print output or not. Defaults to ``True``.
 
     Examples:
         >>> from form_auto_fill_in.utils import get_chrome_driver, try_find_element
@@ -98,10 +104,11 @@ def try_find_element(
         ...     e = try_find_element(driver=driver, by="tag name", identifier="img")
         Succeeded to locate element with tag name=img
     """
+    value = secrets_dict.get(identifier, identifier)
     return try_wrapper(
         func=WebDriverWait(driver=driver, timeout=timeout).until,
         msg_=f"locate element with {by}={identifier}",
-        method=lambda x: x.find_element(by=by, value=identifier),
+        method=lambda x: x.find_element(by=by, value=value),
         verbose_=verbose,
     )
 
@@ -113,18 +120,20 @@ def try_find_element_send_keys(
     values: tuple = (),
     target: Optional[WebElement] = None,
     timeout: int = 3,
+    secrets_dict: Dict[str, str] = {},
     verbose: bool = True,
 ) -> None:
     """Find an element given a By strategy and locator, and Simulates typing into the element.
 
     Args:
-        driver (WebDriver)  : Selenium WebDriver.
-        by (str)            : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
-        identifier (str)    : Identifier to find the element
-        values (tuple)      : A string for typing, or setting form fields. For setting file inputs, this could be a local file path.
-        target (WebElement) : Represents a DOM element. (If you already find element)
-        timeout (int)       : Number of seconds before timing out (default= ``3``)
-        verbose (bool)      : Whether you want to print output or not. (default= ``True`` )
+        driver (WebDriver)            : Selenium WebDriver.
+        by (str)                      : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
+        identifier (str)              : Identifier to find the element
+        values (tuple)                : A string for typing, or setting form fields. For setting file inputs, this could be a local file path.
+        target (WebElement)           : Represents a DOM element. (If you already find element)
+        timeout (int)                 : Number of seconds before timing out. Defaults to ``3``.
+        secrets_dict (Dict[str, str]) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
+        verbose (bool)                : Whether you want to print output or not. Defaults to ``True``.
     """
     if target is None:
         target = try_find_element(
@@ -132,6 +141,7 @@ def try_find_element_send_keys(
             identifier=identifier,
             by=by,
             timeout=timeout,
+            secrets_dict=secrets_dict,
             verbose=verbose,
         )
     if target is not None:
@@ -149,17 +159,19 @@ def try_find_element_click(
     identifier: Optional[str] = None,
     target: Optional[WebElement] = None,
     timeout: int = 3,
+    secrets_dict: Dict[str, str] = {},
     verbose: bool = True,
 ) -> None:
     """Find an element given a By strategy and locator, and Clicks the element.
 
     Args:
-        driver (WebDriver)  : Selenium WebDriver.
-        by (str)            : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
-        identifier (str)    : Identifier to find the element
-        target (WebElement) : Represents a DOM element. (If you already find element)
-        timeout (int)       : Number of seconds before timing out (default= ``3``)
-        verbose (bool)      : Whether you want to print output or not. (default= ``True`` )
+        driver (WebDriver)            : Selenium WebDriver.
+        by (str)                      : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
+        identifier (str)              : Identifier to find the element
+        target (WebElement)           : Represents a DOM element. (If you already find element)
+        timeout (int)                 : Number of seconds before timing out. Defaults to ``3``.
+        secrets_dict (Dict[str, str]) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
+        verbose (bool)                : Whether you want to print output or not. Defaults to ``True``.
     """
     if target is None:
         target = try_find_element(
@@ -167,6 +179,7 @@ def try_find_element_click(
             identifier=identifier,
             by=by,
             timeout=timeout,
+            secrets_dict=secrets_dict,
             verbose=verbose,
         )
     if target is not None:

@@ -18,8 +18,9 @@ class UtokyoHealthManagementReportForm:
     """If you want to create your own gateway class, please inherit this class.
 
     Args:
-        path (str)     : Path to json data that describes the procedure of form.
-        verbose (bool) : Whether to print message or not. Defaults to ``True``.
+        path (str)                    : Path to json data that describes the procedure of form.
+        secrets_dict (Dict[str, str]) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
+        verbose (bool)                : Whether to print message or not. Defaults to ``True``.
 
     Attributes:
         verbose (bool)   : Whether to print message or not. Defaults to ``True``.
@@ -28,10 +29,17 @@ class UtokyoHealthManagementReportForm:
         path (str)       : Path to json data that describes the procedure of form.
     """
 
-    def __init__(self, path: str, verbose: bool = True, **kwargs):
+    def __init__(
+        self,
+        path: str,
+        secrets_dict: Dict[str, str] = {},
+        verbose: bool = True,
+        **kwargs,
+    ):
         self.verbose: bool = verbose
         self.print: callable = print if verbose else lambda *args: None
         self.data: Dict[str, Any] = load_data(path)
+        self.secrets_dict = secrets_dict
         self.path: str = path
 
     @staticmethod
@@ -79,7 +87,12 @@ class UtokyoHealthManagementReportForm:
         for no, values in login_data:
             {"click": try_find_element_click, "send_keys": try_find_element_send_keys,}[
                 values.pop("func")
-            ](driver=driver, verbose=self.verbose, **values)
+            ](
+                driver=driver,
+                secrets_dict=self.secrets_dict,
+                verbose=self.verbose,
+                **values,
+            )
         self.print("[END LOGIN]")
 
     def run(self, **kwargs) -> None:

@@ -62,4 +62,4 @@ jobs:
           UTOKYO_ACCOUNT_PASSWORD: ${{ secrets.UTOKYO_ACCOUNT_PASSWORD }}
         run: |
           poetry install
-          poetry run answer-UHMRF --quiet
+          poetry run answer-UHMRF
