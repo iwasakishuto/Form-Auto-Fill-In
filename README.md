@@ -9,15 +9,15 @@
 <a href="https://github.com/iwasakishuto/Form-Auto-Fill-In/wiki/100.-%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%A0%B1%E5%91%8A%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0"><img src="https://img.shields.io/badge/Documentation-Japanese-ff0000?style=flat-square" alt="Japanese Documentation"></a>
 <a href="https://iwasakishuto.github.io/Form-Auto-Fill-In/UTokyo_Health_Management_Report_Form.html"><img src="https://img.shields.io/badge/Documentation-English-0000ff?style=flat-square" alt="English Documentation"></a>
 
-Answer Form Automatically. 
+Answer Form Automatically.
 
 ## Supported Forms
 
 Currently, the following forms are supported:
 
-|[UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html)||
-|:-:|:-:|
-|[![The University of Tokyo](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/logo.png)](https://iwasakishuto.github.io/Form-Auto-Fill-In/UTokyo_Health_Management_Report_Form.html)|![Juntendo University](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/juntendo/logo.png)|
+|                                              [UTokyo Health Management Report Form](https://www.u-tokyo.ac.jp/covid-19/ja/safety/healthcheck.html)                                               |                                                                                                   |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: |
+| [![The University of Tokyo](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/UHMRF/logo.png)](https://iwasakishuto.github.io/Form-Auto-Fill-In/UTokyo_Health_Management_Report_Form.html) | ![Juntendo University](https://iwasakishuto.github.io/Form-Auto-Fill-In/images/juntendo/logo.png) |
 
 ## How to use?
 
@@ -68,9 +68,20 @@ Succeeded to locate element with xpath=//input[@type='submit']
 Succeeded to click the element with xpath=//input[@type='submit']
 [END LOGIN]
 [START ANSWERING FORM]
-[START FORM]
+[START 0th PAGE]
 1.
-メール送信先
+Vaccination in the event of a cancellation
+In the event of a sudden cancellation, we may contact those interested in getting vaccinated for an appointment. Would you be willing/able to arrive at the vaccination site (Sanjo Conference Hall on the Hongo Campus) within 30 minutes of being contacted?
+
+	1 [radio] 希望しない
+	2 [radio] 希望する（到着可能、かつ、そのような形でも接種を受けたい）
+------------------------------
+Succeeded to locate element with css selector=button.section-next-button
+Succeeded to click the element with css selector=button.section-next-button
+[END 0th PAGE]
+[START 1th PAGE]
+2.
+Email address
 【ECCSクラウドメール(共通ID@g.ecc.u-tokyo.ac.jp)宛の送信にはアドレスの入力は不要です。その他のアドレスへの送信を希望する場合はメールアドレスを入力してください。UTokyoアカウント[共通ID@utac.u-tokyo.ac.jp] はメールアドレスではありませんのでご注意ください）】
 ※ECCSクラウドメールを利用したことがない方は下記URLからアカウント利用の初期設定をしてください（初期設定時のパスワード変更には最大1時間かかります）。 https://hwb.ecc.u-tokyo.ac.jp/wp/literacy/email/initialize/
 
@@ -78,7 +89,7 @@ Succeeded to click the element with xpath=//input[@type='submit']
 	2 [radio] on
 	3 [text]
 ------------------------------
-2.
+3.
 Campus entry
 [Check the campus(es) you are going to enter today (where applicable).]
 
@@ -87,20 +98,20 @@ Campus entry
 	3 [checkbox] 柏地区／Kashiwa Area
 	4 [checkbox] その他／Other Campus
 ------------------------------
-3.
+4.
 Main place(s) you will be staying at or visiting on campus today
 Please enter the name(s) and floor(s) of the building(s) you will be staying at or visiting as listed on the campus map on the UTokyo website ( https://www.u-tokyo.ac.jp/en/about/access.html ).
 
 	1 [text]
 ------------------------------
-4.
+5.
 Body temperature (morning)
 
 	1 [radio] 37.0度未満／Less than 37.0 degrees Celsius
 	2 [radio] 37.0度以上37.5度未満／Less than 37.5 degrees Celsius
 	3 [radio] 37.5度以上／37.5 degrees Celsius or more
 ------------------------------
-5.
+6.
 Presence or absence of symptoms
 Please answer regarding the presence of symptoms today and during the past week.
 If you select "Yes", please answer in detail about the presence or absence of individual symptoms.
@@ -118,8 +129,8 @@ no appetite, nasal discharge, nasal congestion, sore throat, headache, joint pai
 	1 [radio] はい／Yes
 	2 [radio] いいえ／No
 ------------------------------
-[END FORM]
 Succeeded to locate element with css selector=button.__submit-button__
 Succeeded to click the element with css selector=button.__submit-button__
+[END 1th PAGE]
 [END ANSWERING FORM]
 ```

@@ -211,6 +211,26 @@ def try_find_element_click(
             target=target,
         )
 
+def try_find_element_func(
+    driver: WebDriver,
+    funcname: str = "send_keys",
+    by: Optional[str] = None,
+    identifier: Optional[str] = None,
+    timeout: int = 3,
+    secrets_dict: Dict[str, str] = {},
+    verbose: bool = True,
+    **kwargs
+) -> None:
+    {"click": try_find_element_click, "send_keys": try_find_element_send_keys,}[funcname](
+        driver=driver,
+        by=by,
+        identifier=identifier,
+        timeout=timeout,
+        secrets_dict=secrets_dict,
+        verbose=verbose,
+        **kwargs
+    )
+
 
 class KwargsParamProcessor(argparse.Action):
     """Set a new argument.

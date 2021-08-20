@@ -31,26 +31,44 @@
       "identifier": "//input[@type='submit']"
     }
   },
-  "answer": {
-    "1": {
-      "no": 1,
-      "val": []
+  "answer": [
+    {
+      "1": {
+        "no": 1,
+        "val": []
+      },
+      "next": {
+        "func": "click",
+        "by": "css selector",
+        "identifier": "button.section-next-button"
+      }
     },
-    "2": {
-      "no": 1,
-      "val": ["1", "2", "3"]
-    },
-    "3": {
-      "no": 1,
-      "val": "<UHMRF_PLACE>"
-    },
-    "4": {
-      "no": 1,
-      "val": []
-    },
-    "5": {
-      "no": 2,
-      "val": []
+    {
+      "2": {
+        "no": 1,
+        "val": []
+      },
+      "3": {
+        "no": 1,
+        "val": ["1", "2", "3"]
+      },
+      "4": {
+        "no": 1,
+        "val": "<UHMRF_PLACE>"
+      },
+      "5": {
+        "no": 1,
+        "val": []
+      },
+      "6": {
+        "no": 2,
+        "val": []
+      },
+      "next": {
+        "func": "click",
+        "by": "css selector",
+        "identifier": "button.__submit-button__"
+      }
     }
-  }
+  ]
 }

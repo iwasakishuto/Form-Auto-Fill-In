@@ -2,6 +2,7 @@
 import copy
 import time
 from typing import Any, Dict, List
+from collections import deque
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -9,8 +10,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from .utils import (
     get_chrome_driver,
     load_data,
-    try_find_element_click,
-    try_find_element_send_keys,
+    try_find_element_func,
 )
 
 
@@ -47,6 +47,7 @@ class UtokyoHealthManagementReportForm:
         question_number: str,
         answer_data: Dict[str, Dict[str, Any]] = {},
         inputElements: List[WebElement] = [],
+        secrets_dict: Dict[str, str] = {},
     ) -> None:
         """Answer each question.
 
@@ -54,6 +55,7 @@ class UtokyoHealthManagementReportForm:
             question_number (str)                           : Question number in the form.
             answer_data (Dict[str,Dict[str,Any]], optional) : Answer collection for each question. Defaults to ``{}``.
             inputElements (List[WebElement], optional)      : List of input elements in the form. Defaults to ``[]``.
+            secrets_dict (Dict[str, str])                   : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
         """
         answer = answer_data.get(str(question_number), {})
         no = int(answer.get("no", 1))
@@ -68,7 +70,9 @@ class UtokyoHealthManagementReportForm:
                 inputElements[int(n) - 1].click()
         elif question_type == "text":
             if not isinstance(val, str):
-                val = ",".join(val)
+                val = ",".join([secrets_dict.get(e, e) for e in val])
+            else:
+                val = secrets_dict.get(val, val)
             target.send_keys(val)
 
     def login(
@@ -85,13 +89,12 @@ class UtokyoHealthManagementReportForm:
         driver.get(url)
         login_data = copy.deepcopy(sorted(login_data.items(), key=lambda x: x[0]))
         for no, values in login_data:
-            {"click": try_find_element_click, "send_keys": try_find_element_send_keys,}[
-                values.pop("func")
-            ](
+            try_find_element_func(
                 driver=driver,
+                funcname=values.pop("func"),
                 secrets_dict=self.secrets_dict,
                 verbose=self.verbose,
-                **values,
+                **values
             )
         self.print("[END LOGIN]")
 
@@ -109,63 +112,67 @@ class UtokyoHealthManagementReportForm:
             )
             self.answer_form(driver=driver, **kwargs)
 
-    def answer_form(self, driver: WebDriver, **kwargs) -> None:
+    def answer_form(self, driver: WebDriver, deque_maxlen:int=3, **kwargs) -> None:
         """Answer the forms.
 
         Args:
             driver (WebDriver): An instance of Selenium WebDriver.
         """
         self.print("[START ANSWERING FORM]")
-        answer_data = self.data.get("answer", {})
-        answered_question_numbers = []
-        not_found_count = 0
-        self.print("[START FORM]")
-        while True:
-            visible_questions = driver.find_elements_by_class_name(
-                name="office-form-question"
-            )
-            if len(answered_question_numbers) == 0:
-                if not_found_count > 5:
-                    break
+        for i,ith_answer_data in enumerate(self.data.get("answer", [{}])):
+            self.print(f"[START {i}th PAGE]")
+            answered_question_numbers = []
+            num_questions_to_answer = len(ith_answer_data) - 1
+            num_visible_questions = deque([-1]*deque_maxlen, maxlen=deque_maxlen)
+            while True:
                 time.sleep(1)
-                not_found_count += 1
-            elif len(answered_question_numbers) == len(visible_questions):
-                break
-            for question in visible_questions:
-                # NOTE: question number depends on forms.
-                question_number = int(
-                    question.find_element_by_css_selector(
-                        "span.ordinal-number"
-                    ).text.rstrip(".")
+                visible_questions = driver.find_elements_by_class_name(
+                    name="office-form-question"
                 )
-                if question_number not in answered_question_numbers:
-                    self.print(
+                num_visible_questions.append(visible_questions)
+                if all([num_visible_questions[0]==e for e in list(num_visible_questions)[1:]]):
+                    break
+                elif len(answered_question_numbers) >= num_questions_to_answer:
+                    break
+                for question in visible_questions:
+                    # NOTE: question number depends on forms.
+                    question_number = int(
                         question.find_element_by_css_selector(
-                            "div.question-title-box"
-                        ).text
-                        + "\n"
+                            "span.ordinal-number"
+                        ).text.rstrip(".")
                     )
-                    inputElements = question.find_elements_by_tag_name(name="input")
-                    num_inputElements = len(inputElements)
-                    for j, inputTag in enumerate(inputElements):
-                        question_type = inputTag.get_attribute("type")
-                        value = inputTag.get_attribute("value")
-                        # NOTE: input no is 1-based index.
+                    if question_number not in answered_question_numbers:
                         self.print(
-                            f"\t{j+1:>0{len(str(num_inputElements))}} [{question_type}] {value}"
+                            question.find_element_by_css_selector(
+                                "div.question-title-box"
+                            ).text
+                            + "\n"
                         )
-                    self.answer_question(
-                        question_number=str(question_number),
-                        answer_data=answer_data,
-                        inputElements=inputElements,
-                    )
-                    answered_question_numbers.append(question_number)
-                    self.print("-" * 30)
-        self.print("[END FORM]")
-        try_find_element_click(
-            driver=driver,
-            by="css selector",
-            identifier="button.__submit-button__",
-            verbose=self.verbose,
-        )
+                        inputElements = question.find_elements_by_tag_name(name="input")
+                        num_inputElements = len(inputElements)
+                        for j, inputTag in enumerate(inputElements):
+                            question_type = inputTag.get_attribute("type")
+                            value = inputTag.get_attribute("value")
+                            # NOTE: input no is 1-based index.
+                            self.print(
+                                f"\t{j+1:>0{len(str(num_inputElements))}} [{question_type}] {value}"
+                            )
+                        self.answer_question(
+                            question_number=str(question_number),
+                            answer_data=ith_answer_data,
+                            inputElements=inputElements,
+                            secrets_dict=self.secrets_dict,
+                        )
+                        answered_question_numbers.append(question_number)
+                        self.print("-" * 30)
+            next_data = ith_answer_data.get("next", {})
+            if len(next_data)>0:
+                try_find_element_func(
+                    driver=driver,
+                    funcname=next_data.pop("func"),
+                    secrets_dict=self.secrets_dict,
+                    verbose=self.verbose,
+                    **next_data
+                )
+            self.print(f"[END {i}th PAGE]")
         self.print("[END ANSWERING FORM]")
