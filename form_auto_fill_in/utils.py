@@ -1,7 +1,7 @@
 # coding: utf-8
 import argparse
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Callable, Dict, Optional
 
 from selenium import webdriver
 from selenium.common.exceptions import (
@@ -12,6 +12,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
+
+# If you use Windows, see <> to use this function correctly.
+toGREEN: Callable[[str], str] = lambda x: f"\x1b[32m{x}\x1b[0m"
+toRED: Callable[[str], str] = lambda x: f"\x1b[31m{x}\x1b[0m"
+toBLUE: Callable[[str], str] = lambda x: f"\x1b[34m{x}\x1b[0m"
 
 
 def load_data(path: str) -> Dict[str, Any]:
@@ -28,12 +33,24 @@ def load_data(path: str) -> Dict[str, Any]:
     return data
 
 
-def get_chrome_driver() -> WebDriver:
+def get_chrome_driver(browser: bool = False) -> WebDriver:
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--headless")
+    if browser:
+        chrome_options.add_experimental_option(
+            "prefs",
+            {
+                # "plugins.always_open_pdf_externally": True,
+                "profile.default_content_settings.popups": 1,
+                # "download.default_directory": ".",
+                "directory_upgrade": True,
+            },
+        )
+        chrome_options.add_argument("--kiosk-printing")
+    else:
+        chrome_options.add_argument("--headless")
     return webdriver.Chrome(options=chrome_options)
 
 
@@ -71,9 +88,9 @@ def try_wrapper(
     """
     try:
         ret_ = func(*args, **kwargs)
-        prefix = "Succeeded to "
+        prefix = toGREEN("Succeeded to ")
     except Exception as e:
-        prefix = f"[{e.__class__.__name__}] Failed to "
+        prefix = toRED(f"[{e.__class__.__name__}] Failed to ")
     if verbose_:
         print(prefix + msg_)
     return ret_
@@ -84,7 +101,6 @@ def try_find_element(
     by: str,
     identifier: str,
     timeout: int = 3,
-    secrets_dict: Dict[str, str] = {},
     verbose: bool = True,
 ) -> None:
     """Find an element given a By strategy and locator.
@@ -94,7 +110,6 @@ def try_find_element(
         by (str)                      : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
         identifier (str)              : Identifier to find the element
         timeout (int)                 : Number of seconds before timing out. Defaults to ``3``.
-        secrets_dict (Dict[str, str]) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
         verbose (bool)                : Whether you want to print output or not. Defaults to ``True``.
 
     Examples:
@@ -104,11 +119,10 @@ def try_find_element(
         ...     e = try_find_element(driver=driver, by="tag name", identifier="img")
         Succeeded to locate element with tag name=img
     """
-    value = secrets_dict.get(identifier, identifier)
     return try_wrapper(
         func=WebDriverWait(driver=driver, timeout=timeout).until,
         msg_=f"locate element with {by}={identifier}",
-        method=lambda x: x.find_element(by=by, value=value),
+        method=lambda x: x.find_element(by=by, value=identifier),
         verbose_=verbose,
     )
 
@@ -117,7 +131,7 @@ def try_find_element_send_keys(
     driver: WebDriver,
     by: Optional[str] = None,
     identifier: Optional[str] = None,
-    values: tuple = (),
+    value: str = "",
     target: Optional[WebElement] = None,
     timeout: int = 3,
     secrets_dict: Dict[str, str] = {},
@@ -129,7 +143,7 @@ def try_find_element_send_keys(
         driver (WebDriver)            : Selenium WebDriver.
         by (str)                      : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_
         identifier (str)              : Identifier to find the element
-        values (tuple)                : A string for typing, or setting form fields. For setting file inputs, this could be a local file path.
+        value (str)                   : A string for typing, or setting form fields. For setting file inputs, this could be a local file path. Defaults to ``""``.
         target (WebElement)           : Represents a DOM element. (If you already find element)
         timeout (int)                 : Number of seconds before timing out. Defaults to ``3``.
         secrets_dict (Dict[str, str]) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
@@ -141,14 +155,14 @@ def try_find_element_send_keys(
             identifier=identifier,
             by=by,
             timeout=timeout,
-            secrets_dict=secrets_dict,
             verbose=verbose,
         )
+    # real_values = secrets_dict.get(val, val) for val in values]
     if target is not None:
         try_wrapper(
             target.send_keys,
-            *tuple(values),
-            msg_=f"fill {values} in element with {by}={identifier}",
+            *tuple(secrets_dict.get(value, value)),
+            msg_=f"fill {value} in element with {by}={identifier}",
             verbose_=verbose,
         )
 
@@ -179,7 +193,6 @@ def try_find_element_click(
             identifier=identifier,
             by=by,
             timeout=timeout,
-            secrets_dict=secrets_dict,
             verbose=verbose,
         )
     if target is not None:

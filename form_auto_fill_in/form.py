@@ -95,9 +95,13 @@ class UtokyoHealthManagementReportForm:
             )
         self.print("[END LOGIN]")
 
-    def run(self, **kwargs) -> None:
-        """Login and Answer the forms."""
-        with get_chrome_driver() as driver:
+    def run(self, browser: bool = False, **kwargs) -> None:
+        """Login and Answer the forms.
+
+        Args:
+            browser (bool, optional) : Whether you want to run Chrome with GUI browser. Defaults to ``False``.
+        """
+        with get_chrome_driver(browser=browser) as driver:
             self.login(
                 driver=driver,
                 url=self.data["URL"],

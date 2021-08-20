@@ -6,7 +6,7 @@
       "func": "send_keys",
       "by": "xpath",
       "identifier": "//input[@type='email']",
-      "values": "<UTOKYO_ACCOUNT_MAIL_ADDRESS>"
+      "value": "<UTOKYO_ACCOUNT_MAIL_ADDRESS>"
     },
     "1": {
       "func": "click",
@@ -17,7 +17,7 @@
       "func": "send_keys",
       "by": "id",
       "identifier": "passwordInput",
-      "values": "<UTOKYO_ACCOUNT_PASSWORD>",
+      "value": "<UTOKYO_ACCOUNT_PASSWORD>",
       "timeout": 5
     },
     "3": {
@@ -38,7 +38,7 @@
     },
     "2": {
       "no": 1,
-      "val": ["1","2","3"]
+      "val": ["1", "2", "3"]
     },
     "3": {
       "no": 1,
@@ -48,9 +48,9 @@
       "no": 1,
       "val": []
     },
-    "5":{
-      "no":2,
-      "val":[]
+    "5": {
+      "no": 2,
+      "val": []
     }
   }
 }

@@ -9,7 +9,7 @@ from .form import UtokyoHealthManagementReportForm
 from .utils import KwargsParamProcessor
 
 here = os.path.abspath(os.path.dirname(__file__))
-ARGUMENT_KEYS = ["params", "quiet"]
+ARGUMENT_KEYS = ["params", "browser", "quiet"]
 
 
 def UHMRF(argv: list = sys.argv[1:]):
@@ -22,6 +22,11 @@ def UHMRF(argv: list = sys.argv[1:]):
         "--quiet",
         action="store_true",
         help="Whether you want to be quiet or not. (default=False)",
+    )
+    parser.add_argument(
+        "--browser",
+        action="store_true",
+        help="Whether you want to run Chrome with GUI browser. (default=False)",
     )
     parser.add_argument(
         "-P",
@@ -38,10 +43,9 @@ def UHMRF(argv: list = sys.argv[1:]):
         "<UTOKYO_ACCOUNT_PASSWORD>": os.getenv("UTOKYO_ACCOUNT_PASSWORD", ""),
     }
     secrets_dict.update(
-        {k: v for k, v in args.__dict__.items() if k not in ARGUMENT_KEYS}
+        {f"<{k}>": v for k, v in args.__dict__.items() if k not in ARGUMENT_KEYS}
     )
-
     model = UtokyoHealthManagementReportForm(
         path=path, secrets_dict=secrets_dict, verbose=not args.quiet
     )
-    model.run()
+    model.run(browser=args.browser)
