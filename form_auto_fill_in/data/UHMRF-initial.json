@@ -37,17 +37,6 @@
         "no": 1,
         "val": []
       },
-      "next": {
-        "func": "click",
-        "by": "css selector",
-        "identifier": "button.section-next-button"
-      }
-    },
-    {
-      "2": {
-        "no": 1,
-        "val": []
-      },
       "3": {
         "no": 1,
         "val": ["1", "2", "3"]
