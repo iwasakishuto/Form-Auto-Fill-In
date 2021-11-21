@@ -18,7 +18,7 @@ pytest = "^6.2.4"
 ipykernel = "^6.5.1"
 
 [tool.poetry.scripts]
-answer-form = "form_auto_fill_in.cli.answer_form:answer_form.py"
+answer-form = "form_auto_fill_in.cli.answer_form:answer_form_cli"
 show-forms = "form_auto_fill_in.cli.show:show_forms"
 
 [build-system]

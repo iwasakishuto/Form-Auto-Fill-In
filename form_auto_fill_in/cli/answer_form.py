@@ -18,7 +18,7 @@ ARGUMENT_KEYS: List[str] = [
 ]
 
 
-def answer_form(argv: list = sys.argv[1:]):
+def answer_form_cli(argv: list = sys.argv[1:]):
     parser = argparse.ArgumentParser(
         description="Auto fill in form about 'UTokyo Health Management Report Form'",
         add_help=True,
@@ -56,4 +56,4 @@ def answer_form(argv: list = sys.argv[1:]):
     secrets_dict = SECRETS.get(args.secret, {})
     secrets_dict.update({f"<{k}>": v for k, v in args.__dict__.items() if k not in ARGUMENT_KEYS})
 
-    answer_form(path=path, secrets_dict=secrets_dict, verbose=verbose, browser=browser)
+    answer_form(path=path, browser=browser, secrets_dict=secrets_dict, verbose=verbose)

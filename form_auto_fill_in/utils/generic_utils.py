@@ -2,8 +2,9 @@
 import json
 import os
 import subprocess
-from typing import Any, Callable, Dict, Optional, Union
 from pathlib import Path
+from typing import Any, Callable, Dict, Optional, Union
+
 from ._colorings import _toCOLOR_create, toBLUE, toGREEN, toRED
 from ._data import EXAMPLE_JSON_BASE_URL, EXAMPLE_JSON_DATA
 
@@ -108,7 +109,7 @@ def openf(file_path: str, timeout: Optional[int] = None) -> None:
 def prepare_example_json(to: str, timeout: Optional[int] = None) -> None:
     for fn in EXAMPLE_JSON_DATA:
         subprocess.call(
-            f"wget {EXAMPLE_JSON_BASE_URL + fn} -O {os.path.join(to, fn)}",
+            ["wget", EXAMPLE_JSON_BASE_URL + fn, "-O", os.path.join(to, fn)],
             timeout=timeout,
             shell=False,
         )
