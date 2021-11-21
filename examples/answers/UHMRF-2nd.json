@@ -1,57 +1,66 @@
 {
-  "name": "UTokyo Health Management Report Form",
+  "name": "UTokyo Health Management Report Form (Vaccination in the event of a cancellation)",
   "URL": "https://forms.office.com/Pages/ResponsePage.aspx?id=T6978HAr10eaAgh1yvlMhF__kSldrNpNvIWhwdsjjRJURUZEVjlIWjM1VjhXMlVaRVJaWVpEVjJZVCQlQCN0PWcu",
-  "login": {
-    "0": {
+  "form": "office",
+  "login": [
+    {
       "func": "send_keys",
       "by": "xpath",
       "identifier": "//input[@type='email']",
       "value": "<UTOKYO_ACCOUNT_MAIL_ADDRESS>"
     },
-    "1": {
+    {
       "func": "click",
       "by": "xpath",
       "identifier": "//input[@type='submit']"
     },
-    "2": {
+    {
       "func": "send_keys",
       "by": "id",
       "identifier": "passwordInput",
       "value": "<UTOKYO_ACCOUNT_PASSWORD>",
       "timeout": 5
     },
-    "3": {
+    {
       "func": "click",
       "by": "id",
       "identifier": "submitButton"
     },
-    "4": {
+    {
       "func": "click",
       "by": "xpath",
       "identifier": "//input[@type='submit']"
     }
-  },
+  ],
+
   "answer": [
     {
       "1": {
         "no": 1,
         "val": []
       },
+      "next": {
+        "func": "click",
+        "by": "css selector",
+        "identifier": "button.section-next-button"
+      }
+    },
+    {
       "2": {
-        "no": 1,
-        "val": ["1", "2", "3"]
+        "no": [1]
       },
       "3": {
-        "no": 1,
-        "val": "<UHMRF_PLACE>"
+        "no": [1, 2, 3]
       },
       "4": {
-        "no": 1,
-        "val": []
+        "no": [1],
+        "text": "<UHMRF_PLACE>"
       },
       "5": {
-        "no": 2,
-        "val": []
+        "no": [1]
+      },
+      "6": {
+        "no": [2]
       },
       "next": {
         "func": "click",

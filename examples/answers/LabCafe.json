@@ -1,0 +1,31 @@
+{
+  "name": "Lab-Cafe団体・個人利用事前報告フォーム",
+  "URL": "https://forms.gle/AatWaw98EQgJg1LA7",
+  "form": "google",
+  "login": [],
+  "answer": [
+    {
+      "19243701": {
+        "val": "岩崎修登"
+      },
+      "860164315": {
+        "val": [1]
+      },
+      "1573901982": {
+        "val": [3, 7],
+        "others": "バリスタ練習"
+      },
+      "298642942": {
+        "val": [1]
+      },
+      "559751405": {
+        "val": [1, 2, 3, 4, 5]
+      },
+      "next": {
+        "func": "click",
+        "by": "class name",
+        "identifier": "exportLabel"
+      }
+    }
+  ]
+}

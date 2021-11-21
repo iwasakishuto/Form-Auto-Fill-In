@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "form_auto_fill_in"
 version = "0.1.0"
-description = ""
+description = "Answer Form Automatically"
 authors = ["iwasakishuto <cabernet.rock@gmail.com>"]
 license = "MIT"
 
@@ -15,9 +15,11 @@ flake8 = "^3.9.2"
 flake8-mypy = "^17.8.0"
 isort = "^5.8.0"
 pytest = "^6.2.4"
+ipykernel = "^6.5.1"
 
 [tool.poetry.scripts]
-answer-UHMRF = "form_auto_fill_in.main:UHMRF"
+answer-form = "form_auto_fill_in.cli.answer_form:answer_form.py"
+show-forms = "form_auto_fill_in.cli.show:show_forms"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

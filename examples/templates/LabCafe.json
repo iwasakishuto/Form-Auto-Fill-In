@@ -1,0 +1,15 @@
+{
+  "name": "Lab-Cafe団体・個人利用事前報告フォーム",
+  "URL": "https://forms.gle/AatWaw98EQgJg1LA7",
+  "form": "google",
+  "login": [],
+  "answer": [
+    {
+      "next": {
+        "func": "click",
+        "by": "class name",
+        "identifier": "exportLabel"
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "name": "UTokyo Health Management Report Form",
+  "URL": "https://forms.office.com/Pages/ResponsePage.aspx?id=T6978HAr10eaAgh1yvlMhF__kSldrNpNvIWhwdsjjRJURUZEVjlIWjM1VjhXMlVaRVJaWVpEVjJZVCQlQCN0PWcu",
+  "form": "office",
+  "login": [
+    {
+      "func": "send_keys",
+      "by": "xpath",
+      "identifier": "//input[@type='email']",
+      "value": "<UTOKYO_ACCOUNT_MAIL_ADDRESS>"
+    },
+    {
+      "func": "click",
+      "by": "xpath",
+      "identifier": "//input[@type='submit']"
+    },
+    {
+      "func": "send_keys",
+      "by": "id",
+      "identifier": "passwordInput",
+      "value": "<UTOKYO_ACCOUNT_PASSWORD>",
+      "timeout": 5
+    },
+    {
+      "func": "click",
+      "by": "id",
+      "identifier": "submitButton"
+    },
+    {
+      "func": "click",
+      "by": "xpath",
+      "identifier": "//input[@type='submit']"
+    }
+  ],
+  "answer": [
+    {
+      "1": {
+        "no": [1]
+      },
+      "2": {
+        "no": [1, 2, 3]
+      },
+      "3": {
+        "no": [1],
+        "text": "<UHMRF_PLACE>"
+      },
+      "4": {
+        "no": [1],
+        "val": []
+      },
+      "5": {
+        "no": [2],
+        "val": []
+      },
+      "next": {
+        "func": "click",
+        "by": "css selector",
+        "identifier": "button.__submit-button__"
+      }
+    }
+  ]
+}
