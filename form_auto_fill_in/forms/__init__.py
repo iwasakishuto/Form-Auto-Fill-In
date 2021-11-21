@@ -1,6 +1,6 @@
 # coding: utf-8
 import re
-from typing import Union
+from typing import Dict, List, Union
 
 from ..utils.generic_utils import handleKeyError
 from . import base, google, office
@@ -8,9 +8,9 @@ from .base import BaseForm
 from .google import GoogleForm
 from .office import OfficeForm
 
-__all__ = ["GoogleForm", "OfficeForm"]
+__all__: List[str] = ["GoogleForm", "OfficeForm"]
 
-domain2form = {"forms.gle": "google", "forms.office.com": "office"}
+domain2form: Dict[str, str] = {"forms.gle": "google", "forms.office.com": "office"}
 
 
 def url2form(url: str) -> str:
@@ -50,4 +50,4 @@ def get(identifier: Union[str, BaseForm], *args, **kwargs) -> BaseForm:
     return instance
 
 
-all = {"google": GoogleForm, "office": OfficeForm}
+all: Dict[str, BaseForm] = {"google": GoogleForm, "office": OfficeForm}

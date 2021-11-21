@@ -8,7 +8,13 @@ from typing import Any, Callable, Dict, List, Optional, Union
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
-from ..utils import get_chrome_driver, load_data, try_find_element, try_find_element_func
+from ..utils.driver_utils import (
+    get_chrome_driver,
+    try_find_element,
+    try_find_element_func,
+    try_find_element_text,
+)
+from ..utils.generic_utils import load_data
 from .base import BaseForm
 
 
@@ -38,9 +44,21 @@ class GoogleForm(BaseForm):
 
     def find_form_title(self, driver: WebDriver) -> str:
         return driver.find_element_by_class_name("freebirdFormviewerViewHeaderHeaderBody").text
+        # return try_find_element_text(
+        #     driver=driver,
+        #     by="class name",
+        #     identifier="freebirdFormviewerViewHeaderHeaderBody",
+        #     verbose=False,
+        #     get_text=lambda e: e.text,
+        # )
 
     def get_label_text(self, label: WebElement) -> str:
         return label.text
+        # return try_find_element_text(
+        #     target=label,
+        #     verbose=False,
+        #     get_text=lambda e: e.text,
+        # )
 
     def find_visible_questions(self, driver: WebDriver) -> List[WebElement]:
         return driver.find_elements_by_class_name(
@@ -51,12 +69,26 @@ class GoogleForm(BaseForm):
         return re.search(
             pattern=r"%\.@\.\[(\d+),",
             string=question.find_element_by_tag_name(name="div").get_attribute("data-params"),
+            # string=try_find_element_text(
+            #     driver=question,
+            #     by="tag name",
+            #     identifier="div",
+            #     verbose=False,
+            #     get_text=lambda e: e.get_attribute("data-params"),
+            # ),
         ).group(1)
 
     def find_question_title(self, driver: WebDriver, question: WebElement) -> str:
         return re.search(
             pattern=r'%\.@\.\[\d+,"(.+?)"',
             string=question.find_element_by_tag_name(name="div").get_attribute("data-params"),
+            # string=try_find_element_text(
+            #     driver=question,
+            #     by="tag name",
+            #     identifier="div",
+            #     verbose=False,
+            #     get_text=lambda e: e.get_attribute("data-params"),
+            # ),
         ).group(1)
 
     def answer_on_demand(self, question: WebElement) -> Dict[str, Any]:

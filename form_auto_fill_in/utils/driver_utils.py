@@ -65,6 +65,48 @@ def try_find_element(
     )
 
 
+def try_find_element_text(
+    driver: Optional[WebDriver] = None,
+    by: Optional[str] = None,
+    identifier: Optional[str] = None,
+    target: Optional[WebElement] = None,
+    timeout: int = 3,
+    verbose: bool = True,
+    get_text: Callable[[WebElement], str] = lambda target: target.text,
+    default_text: str = "",
+) -> str:
+    """Find an element given a By strategy and locator, and get text from it.
+
+    Args:
+        driver (Optional[WebDriver], optional)           : A Selenium WebDriver. Defaults to ``None``.
+        by (Optional[str], optional)                     : Locator strategies. See `4. Locating Elements — Selenium Python Bindings 2 documentation <https://selenium-python.readthedocs.io/locating-elements.html>`_. Defaults to ``None``.
+        identifier (Optional[str], optional)             : An identifier to find the element. Defaults to ``None``.
+        target (Optional[WebElement], optional)          : A string for typing, or setting form fields. For setting file inputs, this could be a local file path. Defaults to ``None``.
+        timeout (int, optional)                          : Number of seconds before timing out. Defaults to ``3``.
+        verbose (bool, optional)                         : Whether you want to print output or not. Defaults to ``True``.
+        get_text (Callable[[WebElement], str], optional) : A function to extract text from the target element. Defaults to ``lambdatarget:target.text``.
+        default_text (str, optional)                     : Value to return when a function fails. Defaults to ``""``.
+
+    Returns:
+        str: Extracted text.
+    """
+    text = default_text
+    if target is None:
+        target = try_find_element(
+            driver=driver,
+            identifier=identifier,
+            by=by,
+            timeout=timeout,
+            verbose=verbose,
+        )
+
+    if target is not None:
+        text = try_wrapper(
+            func=lambda target: get_text(target), target=target, msg_="get text", verbose_=verbose
+        )
+    return text
+
+
 def try_find_element_send_keys(
     driver: WebDriver,
     by: Optional[str] = None,

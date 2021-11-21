@@ -22,6 +22,7 @@ if not os.path.exists(FORM_AUTO_FILL_IN_DIR):
 
 
 def canonicalize_path(path: str) -> str:
+    path = str(path)
     if not os.path.exists(path) and path in os.listdir(FORM_AUTO_FILL_IN_DIR):
         path = os.path.join(FORM_AUTO_FILL_IN_DIR, path)
     return path

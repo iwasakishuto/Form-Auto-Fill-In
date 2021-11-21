@@ -10,6 +10,7 @@ from .driver_utils import (
     try_find_element_click,
     try_find_element_func,
     try_find_element_send_keys,
+    try_find_element_text,
 )
 from .generic_utils import (
     handleKeyError,

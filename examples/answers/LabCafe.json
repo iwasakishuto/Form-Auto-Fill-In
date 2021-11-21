@@ -24,7 +24,7 @@
       "next": {
         "func": "click",
         "by": "class name",
-        "identifier": "exportLabel"
+        "identifier": "exportButtonContent"
       }
     }
   ]

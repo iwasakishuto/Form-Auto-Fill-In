@@ -9,6 +9,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
 from ..utils._colorings import toACCENT, toBLUE, toGREEN
+from ..utils._path import canonicalize_path
 from ..utils.driver_utils import get_chrome_driver, try_find_element_func
 from ..utils.generic_utils import load_data, wrap_end, wrap_start
 
@@ -17,15 +18,16 @@ class BaseForm(ABC):
     """Abstract Basement Class for Answering Form Automatically.
 
     Args:
-        path (str)                    : Path to json data that describes the procedure of form.
-        secrets_dict (Dict[str, str]) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
-        verbose (bool)                : Whether to print message or not. Defaults to ``True``.
+        path (str)                              : Path to json data that describes the procedure of form.
+        secrets_dict (Dict[str, str], optional) : Key and value pairs defined in github secrets. It is used because the password etc. is not output as it is. Defaults to ``{}``.
+        verbose (bool, optional)                : Whether to print message or not. Defaults to ``True``.
 
     Attributes:
-        verbose (bool)   : Whether to print message or not. Defaults to ``True``.
-        print (callable) : Print function according to ``verbose``
-        data (dict)      : Data that describes the procedure of form.
-        path (str)       : Path to json data that describes the procedure of form.
+        verbose (bool)                      : Whether to print message or not. Defaults to ``True``.
+        print (Callable[[Any], type(None)]) : Print function according to ``verbose``
+        data (Dict[str, Any])               : Data that describes the procedure of form.
+        secrets_dict (Dict[str, str])       :
+        path (str)                          : Path to json data that describes the procedure of form.
     """
 
     def __init__(
@@ -37,7 +39,7 @@ class BaseForm(ABC):
     ):
         self.verbose: bool = verbose
         self.print: Callable[[Any], type(None)] = print if verbose else lambda *args: None
-        self.data: Dict[str, Any] = load_data(path)
+        self.data: Dict[str, Any] = load_data(canonicalize_path(path))
         self.secrets_dict: Dict[str, str] = secrets_dict
         self.path: str = path
 
@@ -70,7 +72,7 @@ class BaseForm(ABC):
                 mark = "x"
             self.print(f"\t{i:>0{digit}}/{num_labels} [{mark}] {self.get_label_text(label)}")
 
-    def input_answer(self, msg: str = "Your Answer{isMultiple}: ", isMultiple=False) -> Any:
+    def input_answer(self, msg: str = "Your Answer{isMultiple}", isMultiple=False) -> Any:
         fmtkwargs: Dict[str, str] = {}
         if "{isMultiple}" in msg:
             fmtkwargs.update(
@@ -81,7 +83,7 @@ class BaseForm(ABC):
                 }
             )
 
-        ans = input(prompt="> " + msg.format(**fmtkwargs))
+        ans = input("> " + msg.format(**fmtkwargs) + ": ")
 
         if isMultiple:
             ans = [e.strip() for e in ans.split(",")]
@@ -131,7 +133,7 @@ class BaseForm(ABC):
             driver (WebDriver): An instance of Selenium WebDriver.
         """
         self.print(wrap_start("START ANSWERING FORM"))
-        self.print(toACCENT("[TITLE]") + f"{self.find_form_title(driver=driver)}\n")
+        self.print(toACCENT("[TITLE]") + f"\n{self.find_form_title(driver=driver)}\n")
         for i, ith_answer_data in enumerate(self.data.get("answer", [{}])):
             self.print(wrap_start(f"START {i}th PAGE", indent=4))
             answered_question_identifiers: List[str] = []

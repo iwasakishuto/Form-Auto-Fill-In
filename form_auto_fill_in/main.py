@@ -2,6 +2,7 @@
 from typing import Any, Dict
 
 from . import forms
+from .utils._path import canonicalize_path
 from .utils.generic_utils import load_data
 
 
@@ -20,7 +21,7 @@ def answer_form(
         secrets_dict (Dict[str, str], optional) : [description]. Defaults to ``{}``.
         verbose (bool, optional)                : [description]. Defaults to ``True``.
     """
-    data: Dict[str, Any] = load_data(path)
+    data: Dict[str, Any] = load_data(canonicalize_path(str(path)))
     form: str = data.get("form")
     if form is None:
         form = forms.url2form(url=data.get("url"))
