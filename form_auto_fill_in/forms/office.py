@@ -7,7 +7,7 @@ from typing import Any, Dict, List
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
-from ..utils.driver_utils import get_chrome_driver, try_find_element_func
+from ..utils.driver_utils import get_chrome_driver, try_find_element_func, try_find_element_text
 from ..utils.generic_utils import load_data
 from .base import BaseForm
 
@@ -23,7 +23,14 @@ class OfficeForm(BaseForm):
         super().__init__(path=path, secrets_dict=secrets_dict, verbose=verbose, **kwargs)
 
     def find_form_title(self, driver: WebDriver) -> str:
-        return driver.find_element_by_class_name("office-form-title-content").text
+        return try_find_element_text(
+            driver=driver,
+            by="class name",
+            identifier="office-form-title-content",
+            verbose=False,
+            get_text=lambda e: e.text,
+            default_text="TITLE",
+        )
 
     def find_visible_questions(self, driver: WebDriver) -> List[WebElement]:
         return driver.find_elements_by_class_name(name="office-form-question")
@@ -82,4 +89,4 @@ class OfficeForm(BaseForm):
                     )
                 else:
                     text = answer["text"]
-                target.send_keys(text)
+                target.send_keys(self.decode_secrets(text))

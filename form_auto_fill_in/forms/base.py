@@ -61,7 +61,13 @@ class BaseForm(ABC):
         self,
         labels: List[WebElement],
         checks: List[int],
-    ):
+    ) -> None:
+        """Check ``labels`` based on ``checks``
+
+        Args:
+            labels (List[WebElement]) : List of Checkbox Elements.
+            checks (List[int])        : Whether to check the label or not.
+        """
         num_labels: int = len(labels)
         digit: int = len(str(num_labels))
 
@@ -73,6 +79,15 @@ class BaseForm(ABC):
             self.print(f"\t{i:>0{digit}}/{num_labels} [{mark}] {self.get_label_text(label)}")
 
     def input_answer(self, msg: str = "Your Answer{isMultiple}", isMultiple=False) -> Any:
+        """Get an answer from user with standard input. (``input()``)
+
+        Args:
+            msg (str, optional)         : A message for the user that appears at the command prompt. Defaults to ``"Your Answer{isMultiple}"``.
+            isMultiple (bool, optional) : Whether expecting to enter multiple values. Defaults to ``False``.
+
+        Returns:
+            Any: User input.
+        """
         fmtkwargs: Dict[str, str] = {}
         if "{isMultiple}" in msg:
             fmtkwargs.update(
@@ -93,7 +108,7 @@ class BaseForm(ABC):
 
     # <--- Main Methods ---
     def run(self, browser: bool = False, **kwargs) -> None:
-        """Login and Answer the forms.
+        """Prepare a driver at once and execute the flow from login, answer, and logout of the form.
 
         Args:
             browser (bool, optional) : Whether you want to run Chrome with GUI browser. Defaults to ``False``.
@@ -107,7 +122,7 @@ class BaseForm(ABC):
         """Perform the login procedure required to answer the form.
 
         Args:
-            driver (WebDriver): [description]
+            driver (WebDriver): An instance of Selenium ``WebDriver``.
         """
         url: str = self.data.get("URL")
         if url is not None:
@@ -130,7 +145,8 @@ class BaseForm(ABC):
         """Answer the forms.
 
         Args:
-            driver (WebDriver): An instance of Selenium WebDriver.
+            driver (WebDriver)           : An instance of Selenium ``WebDriver``.
+            deque_maxlen (int, optional) : How many times to scan the form for new items that need to be entered. Defaults to ``3``.
         """
         self.print(wrap_start("START ANSWERING FORM"))
         self.print(toACCENT("[TITLE]") + f"\n{self.find_form_title(driver=driver)}\n")
@@ -179,10 +195,10 @@ class BaseForm(ABC):
         self.print(wrap_end("END ANSWERING FORM"))
 
     def logout(self, driver: WebDriver) -> None:
-        """Perform the login procedure required to answer the form.
+        """Perform the logout procedure.
 
         Args:
-            driver (WebDriver): [description]
+            driver (WebDriver): An instance of Selenium ``WebDriver``.
         """
         self.print(toACCENT("[END]"))
 
@@ -191,26 +207,80 @@ class BaseForm(ABC):
     # <--- Abstract Methods (NOTE: When inheriting this class, you need to change these methods.) ---
     @abstractmethod
     def find_form_title(self, driver: WebDriver) -> str:
+        """Get the title of the form using ``driver``.
+
+        Args:
+            driver (WebDriver) : An instance of Selenium ``WebDriver``.
+
+        Returns:
+            str: The title of the form.
+        """
         return ""
 
     @abstractmethod
     def get_label_text(self, label: WebElement) -> str:
+        """How to extract label text for each checkbox.
+
+        Args:
+            label (WebElement) : A ``WebElement`` of the checkbox.
+
+        Returns:
+            str: label text.
+        """
         return "text"
 
     @abstractmethod
     def find_visible_questions(self, driver: WebDriver) -> List[WebElement]:
+        """Get all visible questions in the form using ``driver``.
+
+        Args:
+            driver (WebDriver) : An instance of Selenium ``WebDriver``.
+
+        Returns:
+            List[WebElement]: List of Visible questions.
+        """
         return []
 
     @abstractmethod
     def find_question_identifier(self, driver: WebDriver, question: WebElement) -> str:
+        """Get the identifier of the question from ``question`` using ``driver``
+
+        Args:
+            driver (WebDriver)    : [description].
+            question (WebElement) : [description].
+
+        Args:
+            driver (WebDriver)    : An instance of Selenium ``WebDriver``.
+            question (WebElement) : A question ``WebElement``.
+
+        Returns:
+            str: The identifier of the question.
+        """
         return ""
 
     @abstractmethod
     def find_question_title(self, driver: WebDriver, question: WebElement) -> str:
+        """Get the title of the question from ``question`` using ``driver``.
+
+        Args:
+            driver (WebDriver)    : An instance of Selenium ``WebDriver``.
+            question (WebElement) : A question ``WebElement``.
+
+        Returns:
+            str: The title of the question.
+        """
         return ""
 
     @abstractmethod
     def answer_on_demand(self, question: WebElement) -> Dict[str, Any]:
+        """Receive input from users on the spot and respond.
+
+        Args:
+            question (WebElement) : A question ``WebElement``.
+
+        Returns:
+            Dict[str, Any]: Information required for answer.
+        """
         labels: List[WebElement] = question.find_elements_by_tag_name(name="label")
         if len(labels) > 0:
             self.check_labels(labels=labels, checks=[])
@@ -228,9 +298,8 @@ class BaseForm(ABC):
         """Answer each question.
 
         Args:
-            question_identifier (str)                           : Question number in the form.
-            answer_data (Dict[str,Dict[str,Any]], optional) : Answer collection for each question. Defaults to ``{}``.
-            inputElements (List[WebElement], optional)      : List of input elements in the form. Defaults to ``[]``.
+            question (WebElement)             : A question ``WebElement``.
+            answer (Dict[str, Any], optional) : Information required for answer. Defaults to ``{}``.
         """
         if "key" not in answer:
             answer.update(self.answer_on_demand(question=question))
