@@ -16,6 +16,7 @@ flake8-mypy = "^17.8.0"
 isort = "^5.8.0"
 pytest = "^6.2.4"
 ipykernel = "^6.5.1"
+ipython = "^8.2.0"
 
 [tool.poetry.scripts]
 answer-form = "form_auto_fill_in.cli.answer_form:answer_form_cli"
